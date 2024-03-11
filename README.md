@@ -5,7 +5,9 @@ This repository is your one-stop destination for exploring a wide array of machi
 Dive into our examples to:
 
 ***Discover:*** Explore diverse applications of machine learning across different industries and domains.
+
 ***Learn:*** Gain insights into various algorithms and techniques, from the basics to cutting-edge developments.
+
 ***Apply:*** Implement machine learning models on your projects with our easy-to-follow code examples.
 
 Our repository is continuously updated with new examples, ensuring you're always equipped with the latest in machine learning innovation. Join our community, contribute your examples, and let's advance the field of machine learning together!
