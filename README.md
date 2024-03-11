@@ -1,8 +1,8 @@
 # **Welcome to My Machine Learning Examples Repository!**
 
-This repository is your one-stop destination for exploring a wide array of machine learning use cases. From beginner-friendly notebooks to advanced applications, my collection is meticulously curated to cater to enthusiasts and professionals alike. Whether you're interested in computer vision, predictive analytics, or any other ML domain, you'll find practical examples that not only demonstrate the theoretical aspects but also provide hands-on experience with real-world datasets.
+This repository is your destination for exploring a wide array of machine learning use cases. From beginner-friendly notebooks to advanced notebooks, my collection is meticulously curated to cater to enthusiasts and professionals alike. Whether you're interested in computer vision, predictive analytics, or any other ML domain, you'll find practical examples that not only demonstrate the theoretical aspects but also provide hands-on experience with real-world datasets. I include a python utilities file to make plotting, statistical analysis and model metric reporting simple to compliment the noteboks.
 
-Dive into our examples to:
+**Dive into our examples to:**
 
 ***Discover:*** Explore diverse applications of machine learning across different industries and domains.
 
@@ -10,7 +10,11 @@ Dive into our examples to:
 
 ***Apply:*** Implement machine learning models on your projects with our easy-to-follow code examples.
 
-Our repository is continuously updated with new examples, ensuring you're always equipped with the latest in machine learning innovation. Join our community, contribute your examples, and let's advance the field of machine learning together!
+*My notebooks follow the same flow as depicted below:*
+
+![Notebook ML Steps](./images/mlProcess.png "Flow")
+
+My repository is continuously updated with new examples, ensuring you're always equipped with the latest in machine learning innovation. 
 
 | Example | Level | Category | Short Summary | Link |
 |---------|-------|----------|---------------|------|

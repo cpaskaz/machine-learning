@@ -2,6 +2,7 @@
 mlvenv/
 .vscode/
 datasets/
+Misc/
 
 # ignore file
 
