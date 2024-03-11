@@ -15,6 +15,8 @@ Our repository is continuously updated with new examples, ensuring you're always
 | Example | Level | Category | Short Summary | Link |
 |---------|-------|----------|---------------|------|
 | Placeholder | Simple | Regression | Sample Here | [Repo Link](Link Here)|
+| Placeholder 2 | Simple | Regression | Sample Here | [Repo Link](Link Here)|
+| Placeholder 3 | Simple | Regression | Sample Here | [Repo Link](Link Here)|
 | Customer Conversion Prediction | Moderate| Classification | Predicting potential customer lead conversions to paid customers | [Repo Link](Classification-Customer-Conversion-Prediction) |
 | House Pricing Prediction | Moderate | Machine Learning | Predicting the future house prices in Boston | [Repo Link](MachineLearning-Housing-Price-Prediction) |
 | Anomaly Detection | Moderate | Deep Learning | Detecting anomalous heart rythms from pictures | [Repo Link](AnomalyDetection-HeartEKG)
