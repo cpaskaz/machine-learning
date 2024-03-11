@@ -1,0 +1,8 @@
+# ignore directories
+mlvenv/
+.vscode/
+datasets/
+
+# ignore file
+
+*.html
