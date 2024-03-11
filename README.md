@@ -16,7 +16,7 @@ Our repository is continuously updated with new examples, ensuring you're always
 |---------|-------|----------|---------------|------|
 | Placeholder | Simple | Regression | Sample Here | [Repo Link](Link Here)|
 | Customer Conversion Prediction | Moderate| Classification | Predicting potential customer lead conversions to paid customers | [Repo Link](Classification-Customer-Conversion-Prediction) |
-| Digit Recognition | Advanced | Deep Learning | Recognizing street view house digits | [Repo Link](DeepLearning-Digit-Recognition)|
 | House Pricing Prediction | Moderate | Machine Learning | Predicting the future house prices in Boston | [Repo Link](MachineLearning-Housing-Price-Prediction) |
-| Recommending Products | Advanced | Recommendation Systems | Recommending Products on a popular website | [Repo Link](RecommendationSystems-Products) |
 | Anomaly Detection | Moderate | Deep Learning | Detecting anomalous heart rythms from pictures | [Repo Link](AnomalyDetection-HeartEKG)
+| Digit Recognition | Advanced | Deep Learning | Recognizing street view house digits | [Repo Link](DeepLearning-Digit-Recognition)|
+| Recommending Products | Advanced | Recommendation Systems | Recommending Products on a popular website | [Repo Link](RecommendationSystems-Products) |
