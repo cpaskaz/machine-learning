@@ -1,4 +1,4 @@
-# **Welcome to Our Machine Learning Examples Repository!**
+# **Welcome to My Machine Learning Examples Repository!**
 
 This repository is your one-stop destination for exploring a wide array of machine learning use cases. From beginner-friendly notebooks to advanced applications, my collection is meticulously curated to cater to enthusiasts and professionals alike. Whether you're interested in computer vision, predictive analytics, or any other ML domain, you'll find practical examples that not only demonstrate the theoretical aspects but also provide hands-on experience with real-world datasets.
 
