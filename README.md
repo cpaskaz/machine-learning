@@ -14,13 +14,13 @@ This repository is your destination for exploring a wide array of machine learni
 
 ![Notebook ML Steps](./images/mlProcess.png "Flow")
 
-My repository is continuously updated with new examples, ensuring you're always equipped with the latest in machine learning innovation. 
+My repository is continuously updated with new examples, ensuring you're always equipped with several examples. 
 
 | Example | Level | Category | Model/s Used | Short Summary | Link |
 |---------|-------|----------|--------------|---------------|------|
 | Sales Predictions | Simple | Regression | Oridinary Least Squares | Predicting the Sales for the next qualrter | [Link](Regression-Sales-Prediction)|
 | Hospital Length of Stay Predictions | Moderate | Regression | Decision Tree, Random Forest, XG Boost | Predicting how long someone will stay at the hospital | [Link](Regression-Hospital-LOS)|
-| Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential customer lead conversions to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
+| Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential lead conversion to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
 | House Pricing Prediction | Moderate | Machine Learning | XXX | Predicting the future house prices in Boston | [Link](MachineLearning-Housing-Price-Prediction) |
 | Anomaly Detection | Moderate | Deep Learning | XXX | Detecting anomalous heart rythms from pictures | [Link](AnomalyDetection-HeartEKG)
 | Digit Recognition | Advanced | Deep Learning | XXX | Recognizing street view house digits | [Link](DeepLearning-Digit-Recognition)|
