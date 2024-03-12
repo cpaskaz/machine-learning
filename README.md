@@ -19,7 +19,7 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Example | Level | Category | Model/s Used | Short Summary | Link |
 |---------|-------|----------|--------------|---------------|------|
 | Sales Predictions | Simple | Regression | Oridinary Least Squares | Predicting the Sales for the next qualrter | [Link](Regression-Sales-Prediction)|
-| Placeholder 2 | Simple | Regression | XXX | Sample Here | [Link](Link Here)|
+| Hospital Length of Stay Predictions | Moderate | Regression | Decision Tree, Random Forest, XG Boost | Sample Here | [Link](Regression-Hospital-LOS)|
 | Placeholder 3 | Simple | Regression | XXX | Sample Here | [Link](Link Here)|
 | Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential customer lead conversions to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
 | House Pricing Prediction | Moderate | Machine Learning | XXX | Predicting the future house prices in Boston | [Link](MachineLearning-Housing-Price-Prediction) |

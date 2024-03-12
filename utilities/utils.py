@@ -271,16 +271,18 @@ def countplot_grid(data, cols, hue=False, var=None, showpct=True, max_columns=4)
   for ind, x in enumerate(cols):
     if hue and var:
       # sort the dataframe by the x, var columns for each plot
-      plot_data.sort_values(by=[x, var], ascending=True, inplace=True) 
-      ax = sns.countplot(ax=axes_flat[ind], x=x, hue=var, data=plot_data, order=sorted(plot_data[x].unique()), hue_order=sorted(plot_data[var].unique()), palette='coolwarm')
+      plot_data.sort_values(by=[x, var], ascending=True, inplace=True)
+      plot_data_x = plot_data[x].astype(str) 
+      ax = sns.countplot(ax=axes_flat[ind], x=x, hue=var, data=plot_data, order=sorted(plot_data_x.unique()), hue_order=sorted(plot_data[var].unique()), palette='coolwarm')
       n_cat = plot_data[x].nunique()
       n_hue = plot_data[var].nunique()
       ax.legend(loc='upper left', bbox_to_anchor=(0.35, 1.2), shadow=False, ncol=4, frameon=False, fontsize=7)
       ax.set_title(f'Chart for: {x} by {var}', pad=30, fontsize=10, weight='bold')
     if not hue: 
       # sort the dataframe by the x, var columns for each plot
-      plot_data.sort_values(by=[x], ascending=True, inplace=True) 
-      ax = sns.countplot(ax=axes_flat[ind], x=plot_data[x], data=plot_data, order=sorted(plot_data[x].unique()), palette='coolwarm') 
+      plot_data.sort_values(by=[x], ascending=True, inplace=True)
+      plot_data_x = plot_data[x].astype(str)
+      ax = sns.countplot(ax=axes_flat[ind], x=plot_data_x, data=plot_data, order=sorted(plot_data_x.unique()), palette='coolwarm') 
       ax.set_title(f'Chart for: {x}', pad=30, fontsize=10, weight='bold') 
       
     ax.tick_params(axis='x', rotation=90, labelsize=7)  # rotate the axis
@@ -290,8 +292,8 @@ def countplot_grid(data, cols, hue=False, var=None, showpct=True, max_columns=4)
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
 
-    if showpct and hue: with_hue(ax=ax, feature=plot_data[x], plot_categories=n_cat, hue_categories=n_hue)
-    if showpct and not hue: without_hue(ax=ax, feature=plot_data[x]) 
+    if showpct and hue: with_hue(ax=ax, feature=plot_data_x, plot_categories=n_cat, hue_categories=n_hue)
+    if showpct and not hue: without_hue(ax=ax, feature=plot_data_x) 
 
   # If there are any remaining empty subplots, turn them off
   for i in range(n_rows * n_cols):
@@ -743,3 +745,46 @@ def metrics_reg(model, x_train, x_test, y_train, y_test):
             }
         )
     )
+  
+# Function to compute adjusted R-squared
+def adj_r2_score(predictors, targets, predictions):
+    r2 = r2_score(targets, predictions)
+    n = predictors.shape[0]
+    k = predictors.shape[1]
+    return 1 - ((1 - r2) * (n - 1) / (n - k - 1))
+
+
+# Function to compute MAPE
+def mape_score(targets, predictions):
+    return np.mean(np.abs(targets - predictions) / targets) * 100
+
+# Function to compute different metrics to check performance of a regression model
+def model_performance_regression(model, predictors, target):
+    """
+    Function to compute different metrics to check regression model performance
+
+    model: regressor
+    predictors: independent variables
+    target: dependent variable
+    """
+
+    pred = model.predict(predictors)                  # Predict using the independent variables
+    r2 = r2_score(target, pred)                       # To compute R-squared
+    adjr2 = adj_r2_score(predictors, target, pred)    # To compute adjusted R-squared
+    rmse = np.sqrt(mean_squared_error(target, pred))  # To compute RMSE
+    mae = mean_absolute_error(target, pred)           # To compute MAE
+    mape = mape_score(target, pred)                   # To compute MAPE
+
+    # Creating a dataframe of metrics
+    df_perf = pd.DataFrame(
+        {
+            "RMSE": rmse,
+            "MAE": mae,
+            "R-squared": r2,
+            "Adj. R-squared": adjr2,
+            "MAPE": mape,
+        },
+        index=[0],
+    )
+
+    return df_perf
