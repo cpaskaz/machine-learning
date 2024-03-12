@@ -1,8 +1,8 @@
 # **Welcome to My Machine Learning Examples Repository!**
 
-This repository is your destination for exploring a wide array of machine learning use cases. From beginner-friendly notebooks to advanced notebooks, my collection is meticulously curated to cater to enthusiasts and professionals alike. Whether you're interested in computer vision, predictive analytics, or any other ML domain, you'll find practical examples that not only demonstrate the theoretical aspects but also provide hands-on experience with real-world datasets. I include a python utilities file to make plotting, statistical analysis and model metric reporting simple to compliment the noteboks.
+This repository is your destination for exploring a wide array of machine learning use cases. From beginner-friendly notebooks to advanced notebooks, my collection is curated to cater to enthusiasts and professionals alike. Whether you're interested in computer vision, predictive analytics, or any other ML domain, you'll find practical examples that not only demonstrate the theoretical aspects but also provide hands-on experience with real-world datasets. I include a python utilities file to make plotting, statistical analysis and model metric reporting simple to compliment the noteboks.
 
-**Dive into our examples to:**
+**Dive into my examples to:**
 
 ***Discover:*** Explore diverse applications of machine learning across different industries and domains.
 
@@ -16,13 +16,13 @@ This repository is your destination for exploring a wide array of machine learni
 
 My repository is continuously updated with new examples, ensuring you're always equipped with the latest in machine learning innovation. 
 
-| Example | Level | Category | Short Summary | Link |
-|---------|-------|----------|---------------|------|
-| Placeholder | Simple | Regression | Sample Here | [Repo Link](Link Here)|
-| Placeholder 2 | Simple | Regression | Sample Here | [Repo Link](Link Here)|
-| Placeholder 3 | Simple | Regression | Sample Here | [Repo Link](Link Here)|
-| Customer Conversion Prediction | Moderate| Classification | Predicting potential customer lead conversions to paid customers | [Repo Link](Classification-Customer-Conversion-Prediction) |
-| House Pricing Prediction | Moderate | Machine Learning | Predicting the future house prices in Boston | [Repo Link](MachineLearning-Housing-Price-Prediction) |
-| Anomaly Detection | Moderate | Deep Learning | Detecting anomalous heart rythms from pictures | [Repo Link](AnomalyDetection-HeartEKG)
-| Digit Recognition | Advanced | Deep Learning | Recognizing street view house digits | [Repo Link](DeepLearning-Digit-Recognition)|
-| Recommending Products | Advanced | Recommendation Systems | Recommending Products on a popular website | [Repo Link](RecommendationSystems-Products) |
+| Example | Level | Category | Model/s Used | Short Summary | Link |
+|---------|-------|----------|--------------|---------------|------|
+| Sales Predictions | Simple | Regression | Oridinary Least Squares | Predicting the Sales for the next qualrter | [Link](Regression-Sales-Prediction)|
+| Placeholder 2 | Simple | Regression | XXX | Sample Here | [Link](Link Here)|
+| Placeholder 3 | Simple | Regression | XXX | Sample Here | [Link](Link Here)|
+| Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential customer lead conversions to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
+| House Pricing Prediction | Moderate | Machine Learning | XXX | Predicting the future house prices in Boston | [Link](MachineLearning-Housing-Price-Prediction) |
+| Anomaly Detection | Moderate | Deep Learning | XXX | Detecting anomalous heart rythms from pictures | [Link](AnomalyDetection-HeartEKG)
+| Digit Recognition | Advanced | Deep Learning | XXX | Recognizing street view house digits | [Link](DeepLearning-Digit-Recognition)|
+| Recommending Products | Advanced | Recommendation Systems | XXX | Recommending Products on a popular website | [Link](RecommendationSystems-Products) |

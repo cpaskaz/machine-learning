@@ -7,10 +7,13 @@ import matplotlib.gridspec as gridspec
 import math
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix, classification_report, make_scorer, recall_score, roc_curve, auc, accuracy_score
+from sklearn.metrics import r2_score, mean_absolute_percentage_error, mean_absolute_error, mean_squared_error
 
 # To build models for prediction
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+
+from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 ###################################################################
 # General helper functions                                        #
@@ -297,6 +300,52 @@ def countplot_grid(data, cols, hue=False, var=None, showpct=True, max_columns=4)
   
   # Show the plot
   plt.suptitle('Countplot Matrix', fontsize=14, weight='bold') # set the title
+  plt.tight_layout(pad=3.0)
+  plt.show()
+
+def barplot_grid(data, cols, var, max_columns=4):
+  #---------------------------------------------------------------------------------------------------------------------------------
+  # Purpose: This plot will create a grid of barplots                              
+  # Parameters: 
+  #       - data: datframe where the data is
+  #       - cols: list of columns to plot
+  #       - var: the column which to plot
+  #       - max_columns: the max number of columns you want in your matrix of plots  
+  #---------------------------------------------------------------------------------------------------------------------------------
+
+  # copy the dataset for plotting
+  plot_data = data.copy()
+
+  # Calculate grid shape
+  n_rows, n_cols = calculate_subplot_grid_shape(df=cols, max_columns = max_columns)
+  
+  # Create the figure and two subplots
+  fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols*4, n_rows*4))
+
+  # Flatten the axes array for easy indexing
+  axes_flat = axes.flatten()
+
+  # Loop through the DataFrame rows and create a boxplot in each subplot
+  for ind, x in enumerate(cols):
+    # sort the dataframe by the x, var columns for each plot
+    #plot_data.sort_values(by=[x], ascending=True, inplace=True) 
+    plot_data = data.groupby([x], as_index = False)[var].sum()
+    ax = sns.barplot(ax=axes_flat[ind], x=plot_data[x], y=plot_data[var], palette='coolwarm') 
+    ax.set_title(f'Chart for: {x}', pad=30, fontsize=10, weight='bold') 
+    ax.tick_params(axis='x', rotation=90, labelsize=7)  # rotate the axis
+    ax.tick_params(axis='y', labelsize=7)  # rotate the axis
+    ax.xaxis.label.set_size(8)
+    ax.yaxis.label.set_size(8)
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+
+  # If there are any remaining empty subplots, turn them off
+  for i in range(n_rows * n_cols):
+    if i > (len(cols) - 1):  
+      axes_flat[i].axis('off')
+  
+  # Show the plot
+  plt.suptitle('Bar Plot Matrix', fontsize=14, weight='bold') # set the title
   plt.tight_layout(pad=3.0)
   plt.show()
 
@@ -655,3 +704,42 @@ def evaluate_classification_metrics(model, actual, predicted, x_ds, trained_mode
   plt.show()
     
   return ds
+
+def checking_vif(ds):
+  vif = pd.DataFrame()
+  vif["feature"] = ds.columns
+
+  # Calculating VIF for each feature
+  vif["VIF"] = [variance_inflation_factor(np.array(ds.values, dtype=float), i) for i in range(len(ds.columns))]
+    
+  return vif
+
+def metrics_reg(model, x_train, x_test, y_train, y_test):
+  # In-sample Prediction
+  y_pred_train = model.predict(x_train)
+  y_observed_train = y_train
+
+  # Prediction on test data
+  y_pred_test = model.predict(x_test)
+  y_observed_test = y_test
+
+  print(
+        pd.DataFrame(
+            {
+                "Data": ["Train", "Test"],
+                "RMSE": [
+                    np.sqrt(mean_squared_error(y_pred_train, y_observed_train)),
+                    np.sqrt(mean_squared_error(y_pred_test, y_observed_test)),
+                ],
+                "MAE": [
+                    mean_absolute_error(y_pred_train, y_observed_train),
+                    mean_absolute_error(y_pred_test, y_observed_test),
+                ],
+                
+                "r2": [
+                    r2_score(y_pred_train, y_observed_train),
+                    r2_score(y_pred_test, y_observed_test),
+                ],
+            }
+        )
+    )
