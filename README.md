@@ -27,7 +27,7 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Recommending Products | Advanced | Recommendation Systems | XXX | Recommending Products on a popular website | [Link](RecommendationSystems-Products) |
 
 
-## **Pre-Requisites**
+## **Pre-Requisites and Install**
 
 Your personal laptop will need to have Python installed and we highly recommend using Python 3.10. You can use a tool like pyenv (mac) or pyenv-win (windows) to easily download and switch between Python versions. (I am running a Mac M1, so the commands below are for that hardware.)
 
