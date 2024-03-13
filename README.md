@@ -31,8 +31,9 @@ My repository is continuously updated with new examples, ensuring you're always 
 Your personal laptop will need to have Python installed and we highly recommend using Python 3.10. You can use a tool like pyenv (mac) or pyenv-win (windows) to easily download and switch between Python versions. (I am running a Mac M1, so the commands below are for that hardware.)
 
 ***Install python via pyenv and setting the version globally***
-`pyenv install 3.10.11`  # install
-`pyenv global 3.10.11`  # set default
+
+- `pyenv install 3.10.11`  # install
+- `pyenv global 3.10.11`  # set default
 
 ***Once we have our Python version, we can create a directory, clone the repository and create a virtual environment to install our dependencies.***
 
@@ -47,6 +48,7 @@ Your personal laptop will need to have Python installed and we highly recommend 
    - `pip install -r requirements.txt`
 
 **Notes on TensorFlow**
+
 I ran this on a Mac M1 Pro, python 3.10.11.
 The `requirements.txt` file does not contain `tensorflow`. 
 
