@@ -22,6 +22,6 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Hospital Length of Stay Predictions | Moderate | Regression | Decision Tree, Random Forest, XG Boost | Predicting how long someone will stay at the hospital | [Link](Regression-Hospital-LOS)|
 | Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential lead conversion to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
 | House Pricing Prediction | Moderate | Machine Learning | XXX | Predicting the future house prices in Boston | [Link](MachineLearning-Housing-Price-Prediction) |
-| Anomaly Detection | Moderate | Deep Learning | XXX | Detecting anomalous heart rythms from pictures | [Link](AnomalyDetection-HeartEKG)
+| Anomaly Detection | Moderate | Deep Learning | Autoencoder | Detecting anomalous heart rythms | [Link](AnomalyDetection-HeartECG)
 | Digit Recognition | Advanced | Deep Learning | XXX | Recognizing street view house digits | [Link](DeepLearning-Digit-Recognition)|
 | Recommending Products | Advanced | Recommendation Systems | XXX | Recommending Products on a popular website | [Link](RecommendationSystems-Products) |
