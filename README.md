@@ -2,7 +2,7 @@
 
 This repository is your destination for exploring a wide array of machine learning use cases. From beginner-friendly notebooks to advanced notebooks, my collection is curated to cater to enthusiasts and professionals alike. Whether you're interested in computer vision, predictive analytics, or any other ML domain, you'll find practical examples that not only demonstrate the theoretical aspects but also provide hands-on experience with real-world datasets. I include a python utilities file to make plotting, statistical analysis and model metric reporting simple to compliment the noteboks.
 
-**Dive into my examples to:**
+## **Dive into my examples**
 
 ***Discover:*** Explore diverse applications of machine learning across different industries and domains.
 
@@ -27,7 +27,8 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Recommending Products | Advanced | Recommendation Systems | XXX | Recommending Products on a popular website | [Link](RecommendationSystems-Products) |
 
 
-**Pre-Requisites**
+## **Pre-Requisites**
+
 Your personal laptop will need to have Python installed and we highly recommend using Python 3.10. You can use a tool like pyenv (mac) or pyenv-win (windows) to easily download and switch between Python versions. (I am running a Mac M1, so the commands below are for that hardware.)
 
 ***Install python via pyenv and setting the version globally***
