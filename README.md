@@ -10,11 +10,14 @@ This repository is your destination for exploring a wide array of machine learni
 
 ***Apply:*** Implement machine learning models on your projects with our easy-to-follow code examples.
 
-*My notebooks follow the same flow as depicted below:*
+*The datasets my examples utilize are from free online sources. I do not store datasets in my repo. The notebook will have a proper working link to import the datasets.* 
+
+***My notebooks follow the same flow as depicted below:***
 
 ![Notebook ML Steps](./images/mlProcess.png "Flow")
 
 My repository is continuously updated with new examples, ensuring you're always equipped with several examples. 
+
 
 | Example | Level | Category | Model/s Used | Short Summary | Link |
 |---------|-------|----------|--------------|---------------|------|
