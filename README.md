@@ -25,9 +25,6 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Hospital Length of Stay Predictions | Moderate | Regression | Decision Tree, Random Forest, XG Boost | Predicting how long someone will stay at the hospital | [Link](Regression-Hospital-LOS)|
 | Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential lead conversion to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
 | Anomaly Detection | Moderate | Deep Learning | Autoencoder (FNN) | Detecting anomalous heart rythms | [Link](AnomalyDetection-HeartECG)
-| House Pricing Prediction | Moderate | Machine Learning | XXX | Predicting the future house prices in Boston | [Link](MachineLearning-Housing-Price-Prediction) |
-| Digit Recognition | Advanced | Deep Learning | XXX | Recognizing street view house digits | [Link](DeepLearning-Digit-Recognition)|
-| Recommending Products | Advanced | Recommendation Systems | XXX | Recommending Products on a popular website | [Link](RecommendationSystems-Products) |
 
 
 ## **Pre-Requisites and Install**
@@ -56,7 +53,7 @@ Your personal laptop will need to have Python installed and we highly recommend 
 I ran this on a Mac M1 Pro, python 3.10.11.
 The `requirements.txt` file does not contain `tensorflow`. 
 
-For TensorFlow, I installed the standard package through: `pip install tensorflow`. And becuase I am on a Mac with a M1 chip, I needed to install `tensorflow-metal` to take advantage of the GPU.I installed it with `pip install tensorflow-metal`. ***OR*** you can use the extended requirements_with_tf.txt file bu using: `pip install -r requirements_with_tf.txt`
+For TensorFlow, I installed the standard package through: `pip install tensorflow`. And becuase I am on a Mac with a M1 chip, I needed to install `tensorflow-metal` to take advantage of the GPU.I installed it with `pip install tensorflow-metal` ***OR*** you can use the extended requirements_with_tf.txt file bu using: `pip install -r requirements_with_tf.txt`
 
 For your specific local machine, if it does not have a GPU, the models will still work with CPU, but just take longer.
 

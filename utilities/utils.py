@@ -408,7 +408,7 @@ def bar_perc(data, z, hue=False, hue_column=None, orientation='V', figsize=(10,6
   ax.spines['top'].set_visible(False) 
   plt.show()
    
-def corr_matrix(data):
+def corr_matrix(data, figsize=(10,6)):
   #---------------------------------------------------------------------------------------------------------------------------------
   # Purpose: This plot will create a correlation matrix                              
   # Parameters: 
@@ -418,7 +418,7 @@ def corr_matrix(data):
   corr = data.corr() 
 
   # Plot the correltion heatmap
-  plt.figure(figsize = (10, 6))
+  plt.figure(figsize = figsize)
   sns.heatmap(corr, annot = True, cmap = 'coolwarm', fmt = ".3f",xticklabels = corr.columns,yticklabels = corr.columns)
   # set the title and show the plot
   plt.title("Heatmap of the Correlation Matrix for the Numerical Values")
