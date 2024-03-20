@@ -25,11 +25,12 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Hospital Length of Stay Predictions | Moderate | Regression | Decision Tree, Random Forest, XG Boost | Predicting how long someone will stay at the hospital | [Link](Regression-Hospital-LOS)|
 | Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential lead conversion to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
 | Anomaly Detection | Moderate | Deep Learning | Autoencoder (FNN) | Detecting anomalous heart rythms | [Link](AnomalyDetection-HeartECG)
+| Loan Default Prediction | Moderate | Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost, LDA, QDA, Logistic Rrgression, SVM, KNN, NB | Predicting Loan Defaults | [Link](Classification-Loan-Default-Prediction)
 
 
 ## **Pre-Requisites and Install**
 
-Your personal laptop will need to have Python installed and we highly recommend using Python 3.10. You can use a tool like pyenv (mac) or pyenv-win (windows) to easily download and switch between Python versions. (I am running a Mac M1, so the commands below are for that hardware.)
+Your personal laptop/desktop will need to have Python installed and we highly recommend using Python 3.10. You can use a tool like pyenv (mac) or pyenv-win (windows) to easily download and switch between Python versions. (I am running a Mac M1, so the commands below are for that hardware.)
 
 ***Install python via pyenv and setting the version globally***
 
