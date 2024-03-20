@@ -4,16 +4,26 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 import matplotlib.gridspec as gridspec
+from matplotlib import cm
+from matplotlib.cm import get_cmap
 import math
 from sklearn import metrics
-from sklearn.metrics import confusion_matrix, classification_report, make_scorer, recall_score, roc_curve, auc, accuracy_score
+from sklearn.metrics import confusion_matrix, classification_report, make_scorer, recall_score, roc_curve, auc, accuracy_score, log_loss
 from sklearn.metrics import r2_score, mean_absolute_percentage_error, mean_absolute_error, mean_squared_error
 
-# To build models for prediction
+
+from sklearn.model_selection import StratifiedShuffleSplit
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
+from sklearn.linear_model import LogisticRegression
 
 from statsmodels.stats.outliers_influence import variance_inflation_factor
+from sklearn.inspection import permutation_importance
 
 ###################################################################
 # General helper functions                                        #
@@ -171,10 +181,10 @@ def histogram_boxplot_grid(num_col, data, max_columns):
   #---------------------------------------------------------------------------------------------------------------------------------
     
   gridrow = 0
-  n_rows, n_cols = calculate_subplot_grid_shape(df=num_col, max_columns=3)
+  n_rows, n_cols = calculate_subplot_grid_shape(df=num_col, max_columns=max_columns)
 
   # Set up the figure and GridSpec
-  fig = plt.figure(figsize=(6*n_cols, 4*n_rows))  # Adjust figure size dynamically based on the number of columns
+  fig = plt.figure(figsize=(8*n_cols, 4*n_rows))  # Adjust figure size dynamically based on the number of columns
 
   #set the height ratios of the three plots
   hratio = []
@@ -215,7 +225,7 @@ def histogram_boxplot_grid(num_col, data, max_columns):
     if mod == (n_cols-1):
       gridrow = gridrow + 3 # there are three plots, so the counter needs to be incremented by three
 
-  plt.suptitle('Boxplot/Histogram Matrix') # set the title
+  #plt.suptitle('Boxplot/Histogram Matrix') # set the title
   plt.show()   
    
 def df_countplot(df, feature, orderval, topn=10, figsize=(10, 6)):
@@ -423,6 +433,8 @@ def corr_matrix(data, figsize=(10,6)):
   # set the title and show the plot
   plt.title("Heatmap of the Correlation Matrix for the Numerical Values")
   plt.show()
+
+  return corr
    
 def boxplot_grid(pairinput, df):
   #---------------------------------------------------------------------------------------------------------------------------------
@@ -472,14 +484,68 @@ def stacked_barplot(data, predictor, target):
 
     count = data[predictor].nunique()
     sorter = data[target].value_counts().index[-1]
-    tab1 = pd.crosstab(data[predictor], data[target], margins=True).sort_values(by=sorter, ascending=False)
-    print(tab1)
-    print("-" * 100)
+    tab1 = pd.crosstab(data[predictor], data[target], margins=True,).sort_values(by=sorter, ascending=False)
+    #print(tab1)
+    #print("-" * 100)
     tab = pd.crosstab(data[predictor], data[target], normalize="index").sort_values(by=sorter, ascending=False)
     tab.plot(kind="bar", stacked=True, figsize=(count + 5, 5))
     plt.legend(loc="lower left", frameon=False,)
     plt.legend(loc="upper left", bbox_to_anchor=(1, 1))
     plt.show()
+
+def stacked_barplot_grid(data, predictor, target, max_columns=4):
+
+  # Calculate grid shape
+  n_rows, n_cols = calculate_subplot_grid_shape(df=predictor, max_columns = max_columns)
+  
+  # Create the figure and two subplots
+  fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols*4, n_rows*5))
+
+  # Flatten the axes array for easy indexing
+  axes_flat = axes.flatten()
+
+  # Get the coolwarm colormap
+  cmap = get_cmap("coolwarm") 
+
+  # Loop through the DataFrame rows and create a boxplot in each subplot
+  for ind, x in enumerate(predictor):
+    tab = pd.crosstab(index=data[x], columns=data[target], normalize='index') * 100
+    ax = tab.plot(ax=axes_flat[ind], kind='bar', stacked=True, colormap=cmap, width=.9,)
+    ax.set_title(f'Stacked Chart for: {x}', pad=30, fontsize=10, weight='bold') 
+    ax.tick_params(axis='x', rotation=90, labelsize=7)  # rotate the axis
+    ax.tick_params(axis='y', labelsize=7)  # rotate the axis
+    ax.xaxis.label.set_visible(False)
+    ax.yaxis.label.set_size(8)
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.legend(loc='upper left', bbox_to_anchor=(0.3, 1.15), shadow=False, ncol=4, frameon=False, fontsize=7)
+
+    #plt.legend(title='Secondary Category')
+    #plt.xticks(rotation=0)  # Keeps the category labels horizontal  
+  
+  # If there are any remaining empty subplots, turn them off
+  for i in range(n_rows * n_cols):
+    if i > (len(predictor) - 1):  
+      axes_flat[i].axis('off')
+  
+  
+  #plt.suptitle('Stacked 100% Bar Plot Grid')
+  plt.tight_layout(pad=5.0)
+  plt.show()  
+
+def pie_chart(data, var, figsize=(4,4)):
+  # Using value_counts() to get the counts of unique values in the 'Attrition' column
+  category_counts = data[var].value_counts()
+
+  # Generate a coolwarm color palette
+  coolwarm_palette = cm.get_cmap('coolwarm', len(category_counts))
+
+  # Plotting the pie chart
+  plt.figure(figsize=figsize)  # Optional: specifies the figure size
+  pie = plt.pie(category_counts, autopct='%1.1f%%', explode=[0.1,0], startangle=140, colors=[coolwarm_palette(i) for i in range(len(category_counts))])
+  plt.legend(pie[0], labels=category_counts.index, title="Categories", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+  plt.title('Pie Chart of the Target Variable Counts')
+  plt.show()
 
 ###################################################################
 # Statistics / Distribution helper functions                      #
@@ -493,7 +559,7 @@ def dist_different(df, category, value):
   #       - category: column that has the categories you want to test to see if there is a differece
   #       - value: the column to analyse the distribution
   #---------------------------------------------------------------------------------------------------------------------------------
-  
+
   # Group by category
   grouped = df.groupby(category)[value]
 
@@ -624,7 +690,7 @@ def metrics_roc(y_ds, y_score, plot=True):
 
   return roc_auc
   
-def evaluate_classification_metrics(model, actual, predicted, x_ds, trained_model):
+def evaluate_classification_metrics(model, actual, predicted, x_ds, trained_model, plot=True, knn=False):
   #---------------------------------------------------------------------------------------------------------------------------------
   # Purpose: evaluate and create a dataframe to hold the model metrics, plot the confustion matrix and Important features                
   # Parameters: 
@@ -656,56 +722,77 @@ def evaluate_classification_metrics(model, actual, predicted, x_ds, trained_mode
   df_name = 'dfmr'
   ds = check_create_append_df(df_name, dta)
     
-  ##### Start the output and plots #####
-  print(df.to_string(index=False))
-  print('')
+  if plot:
+    ##### Start the output and plots #####
+    print(df.to_string(index=False))
+    print('')
 
-  # Creating the plot grid
-  fig = plt.figure(figsize=(10, 5))
-  gs = fig.add_gridspec(2, 2)  # Define a grid of 3 rows, 2 columns
+    # Creating the plot grid
+    fig = plt.figure(figsize=(10, 5))
+    gs = fig.add_gridspec(2, 2)  # Define a grid of 3 rows, 2 columns
 
-  # Plot the confusion matrix
-  cm = confusion_matrix(actual, predicted)
+    # Plot the confusion matrix
+    cm = confusion_matrix(actual, predicted)
     
-  ax1 = fig.add_subplot(gs[0, 0])  # This places it in grid cell (1, 1)
-  sns.heatmap(ax=ax1, data=cm, annot=True,  fmt='.2f', xticklabels=['0', '1'], yticklabels=['0', '1'], cmap="coolwarm")
-  ax1.set_ylabel('Actual')
-  ax1.set_xlabel('Predicted')
-  ax1.set_title('Confusion Matrix')
-  ax1.tick_params(axis='x', labelsize=8)
-  ax1.tick_params(axis='y', labelsize=8)
+    ax1 = fig.add_subplot(gs[0, 0])  # This places it in grid cell (1, 1)
+    sns.heatmap(ax=ax1, data=cm, annot=True,  fmt='.2f', xticklabels=['0', '1'], yticklabels=['0', '1'], cmap="coolwarm")
+    ax1.set_ylabel('Actual')
+    ax1.set_xlabel('Predicted')
+    ax1.set_title('Confusion Matrix')
+    ax1.tick_params(axis='x', labelsize=8)
+    ax1.tick_params(axis='y', labelsize=8)
 
-  # Plotting the ROC curve
-  ax2 = fig.add_subplot(gs[1, 0])  # This places it in grid cell (2, 1)
-  ax2.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)    
-  ax2.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-  ax2.set_xlim([0.0, 1.0])
-  ax2.set_ylim([0.0, 1.05])
-  ax2.set_xlabel('False Positive Rate')
-  ax2.tick_params(axis='x', labelsize=8)
-  ax2.tick_params(axis='y', labelsize=8)
-  ax2.set_ylabel('True Positive Rate')
-  ax2.set_title('Receiver Operating Characteristic')
-  ax2.legend(loc="lower right")
-  #plt.show()
+    # Plotting the ROC curve
+    ax2 = fig.add_subplot(gs[1, 0])  # This places it in grid cell (2, 1)
+    ax2.plot(fpr, tpr, color='darkorange', lw=2, label='ROC curve (area = %0.2f)' % roc_auc)    
+    ax2.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    ax2.set_xlim([0.0, 1.0])
+    ax2.set_ylim([0.0, 1.05])
+    ax2.set_xlabel('False Positive Rate')
+    ax2.tick_params(axis='x', labelsize=8)
+    ax2.tick_params(axis='y', labelsize=8)
+    ax2.set_ylabel('True Positive Rate')
+    ax2.set_title('Receiver Operating Characteristic')
+    ax2.legend(loc="lower right")
+    #plt.show()
 
-  # Plot feature importances
-  importances = trained_model.feature_importances_
-  columns = x_ds.columns
-  importance_df = pd.DataFrame(importances, index = columns, columns = ['Importance']).sort_values(by = 'Importance', ascending = False)
+    if not knn:
+      # Plot feature importances
+      importances = trained_model.feature_importances_
+      columns = x_ds.columns
+      importance_df = pd.DataFrame(importances, index = columns, columns = ['Importance']).sort_values(by = 'Importance', ascending = False)
     
-  ax3 = fig.add_subplot(gs[:, 1])  # This makes it span all rows in column 2
-  sns.barplot(ax=ax3, x=importance_df.Importance,y=importance_df.index, orient='h', palette='coolwarm')
-  ax3.set_title('Feature Importances')
-  ax3.set_xlabel('Feature Index')
-  ax3.set_ylabel('Importance')
-  ax3.tick_params(axis='x', labelsize=8)
-  ax3.tick_params(axis='y', labelsize=8)
+      ax3 = fig.add_subplot(gs[:, 1])  # This makes it span all rows in column 2
+      sns.barplot(ax=ax3, x=importance_df.Importance,y=importance_df.index, orient='h', palette='coolwarm')
+      ax3.set_title('Feature Importances')
+      ax3.set_xlabel('Feature Index')
+      ax3.set_ylabel('Importance')
+      ax3.tick_params(axis='x', labelsize=8)
+      ax3.tick_params(axis='y', labelsize=8)
+    
+    else:
+      # Calculate permutation importance
+      results = permutation_importance(trained_model, x_ds, predicted, scoring='accuracy')
 
-  plt.tight_layout()
-  plt.show()
+      # Plotting
+      importances = results.importances_mean
+      indices = np.argsort(importances)
+      # Using the coolwarm colormap
+      colors = plt.cm.coolwarm(importances[indices] / np.max(importances[indices]))
+      ax3 = fig.add_subplot(gs[:, 1])  # This makes it span all rows in column 2
+      plt.barh(range(len(indices)), importances[indices], color=colors, align='center')
+      plt.yticks(range(len(indices)), [x_ds.columns[i] for i in indices])
+      ax3.set_title('Feature Importances')
+      ax3.set_xlabel('Feature Index')
+      ax3.set_ylabel('Importance')
+      ax3.tick_params(axis='x', labelsize=8)
+      ax3.tick_params(axis='y', labelsize=8)
+
+    plt.tight_layout()
+    plt.show()
     
   return ds
+
 
 def checking_vif(ds):
   vif = pd.DataFrame()

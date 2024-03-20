@@ -5,6 +5,5 @@ datasets/
 Misc/
 Templates/
 
-# ignore file
-
+# ignore files
 *.html
