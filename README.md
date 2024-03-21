@@ -26,6 +26,7 @@ My repository is continuously updated with new examples, ensuring you're always 
 | Customer Conversion Prediction | Moderate| Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost | Predicting potential lead conversion to paid customers | [Link](Classification-Customer-Conversion-Prediction) |
 | Anomaly Detection | Moderate | Deep Learning | Autoencoder (FNN) | Detecting anomalous heart rythms | [Link](AnomalyDetection-HeartECG)
 | Loan Default Prediction | Moderate | Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost, LDA, QDA, Logistic Rrgression, SVM, KNN, NB | Predicting Loan Defaults | [Link](Classification-Loan-Default-Prediction)
+| Employee Attrition Prediction | Moderate | Classification | Decision Tree, Random Forest, AdaBoost, Gradient Boost, LDA, QDA, Logistic Rrgression, SVM, KNN, NB | Predicting Employee Attrition | [Link](Classification-Employee-Attrition-Prediction)
 
 
 ## **Pre-Requisites and Install**
